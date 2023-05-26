@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h3>Format Form</h3>
+    NIM : <input type="text" id="txNIM"><br>
+    NAMA : <input type="text" id="txNAMA"><br>
+    JENIS KELAMIN: <input type="text" id="txJKEL"><br>
+    ALAMAT : <input type="text" id="txALAMAT"><br>
+    HOBI : <input type="text" id="txHOBI"><br>
+    STATUS : <input type="text" id="txSTATUS"><br>
+
+    <h3>Format Text</h3>
+    NIM: <span id="txNIM2"></span><br>
+    NAMA: <span id="txNAMA2"></span><br>
+    JENIS KELAMIN: <span id="txJKEL2"></span><br>
+    ALAMAT: <span id="txALAMAT2"></span><br>
+    HOBI: <span id="txHOBI2"></span><br>
+    STATUS: <span id="txSTATUS2"></span><br>
+
+    <script>
+        const bacadata = new XMLHttpRequest();
+        bacadata.open("GET","http://localhost/sesi11/latihan01.php");
+        bacadata.send();
+        bacadata.onload = function(){
+            const dta = JSON.parse(this.responseText);
+            let jkel = (dta.JKEL=="L")?"Laki-Laki":"Perempuan";
+
+            console.log(dta);
+            document.getElementById("txNIM").value = dta.NIM;
+            document.getElementById("txNIM2").innerHTML = dta.NIM;
+            document.getElementById("txNAMA").value = dta.NAMA;
+            document.getElementById("txNAMA2").innerHTML = dta.NAMA;
+            document.getElementById("txALAMAT").value = dta.ALAMAT;
+            document.getElementById("txALAMAT2").innerHTML = dta.ALAMAT;
+            document.getElementById("txJKEL").value = jkel;
+            document.getElementById("txJKEL2").innerHTML = jkel;
+            document.getElementById("txHOBI").value = dta.HOBI;
+            document.getElementById("txHOBI2").innerHTML = dta.HOBI;
+            document.getElementById("txSTATUS").value = dta.STATUS;
+            document.getElementById("txSTATUS2").innerHTML = dta.STATUS;
+        }
+    </script>
+
+</body>
+</html>
