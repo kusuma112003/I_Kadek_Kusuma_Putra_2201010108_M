@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tambah data</title>
+</head>
+<body class container>
+    <h3>Tambah Data</h3>
+    <form class="from-control my-5">
+        <div>
+            Nama Lengkap :
+            <input class= "form-control"type="text" name="" id=""txNama>
+        </div>
+        <div>
+            Email :
+            <input class= "form-control"type="email" name="" id=""txEmail>
+        </div>
+        <div>
+           Username :
+            <input class= "form-control"type="text" name="" id=""txUsername>
+        </div>
+        <div>
+            Password:
+            <input class= "form-control"type="password" name="" id=""txPass1>
+        </div>
+        <div>
+            Verifikasi Password
+            <input class= "form-control"type="password" name="" id=""txPass2>
+        </div>
+    </form>
+
+    <script>
+        function storedata(){
+            let target = "https://webpro.ptov.my.id/api/curduser.php?aksi=get";
+            let nama = document.getElementById("txNama").value;
+            let email = document.getElementById("txEmail").value;
+            let Username = document.getElementById("txUsername").value;
+            let pass1 = document.getElementById("txPass1").value;
+            let pass2 = document.getElementById("txPass2").value;
+            let params = "nama="+nama+"&email="+email+"&username="+username+"&pass1="+pass1+"&pass2="+pass2;
+            
+            const storedata = new XMLHttpRequest()
+            storedata.open("POST",target, true);
+            storedata.setRequestHeader("content-type","aplication/xwww-form-urlencoded");
+        }
+    </script>
+    
+</body>
+</html>
