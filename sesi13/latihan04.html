@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Tambah Data User</h3>
+    <form style="border: 2px solid black; padding:10px; gap:5px;">
+        <div style="padding:10px;">
+            <input type="text" name="" id="txIDUSER">
+            User Name :
+            <input type="text" name="" id="txUSER">
+        </div>
+        <div  style="padding:10px;">
+            Password :
+            <input type="password" name="" id="txPASS1">
+        </div>
+        <div  style="padding:10px;">
+            Verifikasi Password :
+            <input type="password" name="" id="txPASS2">
+        </div>
+        <div  style="padding:10px;">
+            Nama Lengkap :
+            <input type="text" name="" id="txNAMA">
+        </div>
+        <div  style="padding:10px;">
+            Email :
+            <input type="email" name="" id="txEMAIL">
+        </div>
+        <div>
+            <button type="button" onclick="destroydata()">delet</button>
+        </div>
+    </form>
+<script>
+    const request1 = new XMLHttpRequest;
+    caridata()
+    function caridata(){
+        const qs = window.location.search;
+        const usp = new URLSearchParams(qs)
+        let iduser = usp.get("id")
+        let target = "https://webpro.ptov.my.id/api/curduser.php?aksi=get&q="+iduser;
+        request1.open("GET",target,true);
+        
+        storedta.onload = function(){
+            const gdta = JSON.parse(this.responseText);
+            console.log(gdta)
+            
+            document.getElementById("txNAMA").value = gdta.isi[0][0];
+            document.getElementById("txEMAIL").value = gdta.isi[0][1];
+            document.getElementById("txUSER").value = gdta.isi[0][2];
+            document.getElementById("txPASS1").value = gdta.isi[0][2];
+            document.getElementById("txPASS2").value = gdta.isi[0][2];
+            document.getElementById("txIDUSER").value = iduser;
+
+        }
+    }
+    function updatedata(){
+        let target="https://webpro.ptov.my.id/api/curduser.php?aksi=destroy";
+        
+        let params ="iduser="+iduser;
+
+        const storedta = new XMLHttpRequest();
+        storedta.open("POST",target,true);
+        storedta.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        storedta.send(params);
+        
+        storedta.onload = function(){
+            console.log(this.responseText);
+            if(gdta.eror ==0){
+                alert ("")
+            }
+        }
+    }
+</script>
+</body>
+
+</html>
